@@ -1,1 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name — Portfolio & Selected Work</title>
+    
+    <!-- Modern Editorial & UI Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        /* =========================================
+           1. THEME PALETTE & TYPOGRAPHY SETTINGS
+           ========================================= */
+        :root {
+            --bg-page: #faf9f6;          /* Warm alabaster background */
+            --bg-card: #ffffff;          /* Crisp white cards */
+            --bg-subtle: #f3f1ec;        /* Soft stone tint */
+            --text-main: #141413;        /* Deep charcoal ink */
+            --text-muted: #575652;       /* Warm slate gray */
+            --accent: #164e3f;           /* Deep forest emerald */
+            --accent-light: #e8f1ee;     /* Soft sage highlight */
+            --accent-hover: #0f382d;
+            --border: #e5e2da;
+            --shadow-sm: 0 4px 20px rgba(20, 20, 19, 0.04);
+            --shadow-lg: 0 16px 40px rgba(20, 20, 19, 0.08);
+            --font-serif: 'Instrument Serif', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            background-image: radial-gradient(circle at 85% 0%, rgba(22, 78, 63, 0.06) 0%, transparent 45%);
+        }
+
+        /* =========================================
+           2. FLOATING FROSTED NAVIGATION
+           ========================================= */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(250, 249, 246, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        /* =========================================
+           3. HERO & EDITORIAL INTRO
+           ========================================= */
+        main {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 5rem;
+        }
+
+        .hero {
+            max-width: 780px;
+            margin-bottom: 4.5rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            margin-bottom: 1.5rem;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #16a34a;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.75rem, 6vw, 4.25rem);
+            font-weight: 400;
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--text-main);
+            color: #ffffff;
+            padding: 0.75rem 1.4rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-subtle);
+            color: var(--text-main);
+        }
+
+        /* =========================================
+           4. SECTION HEADER & FILTER TABS
+           ========================================= */
+        .section-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+            margin-bottom: 2.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-serif);
+            font-size: 2.25rem;
+            font-weight: 400;
+            line-height: 1.15;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 0.4rem;
+            background-color: var(--bg-subtle);
+            padding: 0.3rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            color: var(--text-main);
+        }
+
+        .filter-btn.active {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        /* =========================================
+           5. ARTIFACT SHOWCASE CARDS
+           ========================================= */
+        .artifact-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .artifact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .artifact-card.hidden {
+            display: none;
+        }
+
+        .media-frame {
+            background-color: var(--bg-subtle);
+            padding: 1.25rem 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .media-frame img {
+            width: 100%;
+            max-height: 520px;
+            object-fit: cover;
+            display: block;
+            border-radius: 10px 10px 0 0;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            cursor: zoom-in;
+            transition: opacity 0.2s ease;
+        }
+
+        .media-frame img:hover {
+            opacity: 0.95;
+        }
+
+        .zoom-hint {
+            position: absolute;
+            bottom: 0.85rem;
+            right: 2rem;
+            background-color: rgba(20, 20, 19, 0.78);
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .media-frame video {
+            width: 100%;
+            max-height: 520px;
+            display: block;
+            border-radius: 10px 10px 0 0;
+            background-color: #141413;
+        }
+
+        .video-embed {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            background-color: #141413;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .artifact-body {
+            padding: 2rem 2.25rem 2.25rem;
+        }
+
+        .artifact-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            background-color: var(--accent-light);
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            font-weight: 500;
+        }
+
+        .tag-neutral {
+            color: var(--text-muted);
+            background-color: var(--bg-subtle);
+        }
+
+        .artifact-body h3 {
+            font-family: var(--font-serif);
+            font-size: 1.85rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 0.65rem;
+        }
+
+        .artifact-summary {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 760px;
+        }
+
+        /* 3-Column Structured Annotations */
+        .annotation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.75rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .annotation-box {
+            background-color: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.15rem 1.25rem;
+        }
+
+        .annotation-step {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+            display: block;
+            font-weight: 500;
+        }
+
+        .annotation-box p {
+            font-size: 0.92rem;
+            color: var(--text-main);
+            line-height: 1.55;
+        }
+
+        /* =========================================
+           6. HIGH-CONTRAST CLOSING CONTACT CARD
+           ========================================= */
+        .contact-banner {
+            background-color: var(--text-main);
+            color: #faf9f6;
+            border-radius: 18px;
+            padding: 3.25rem 2.5rem;
+            margin-top: 4rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .contact-banner h2 {
+            font-family: var(--font-serif);
+            font-size: 2.35rem;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-banner p {
+            color: #b8b6b0;
+            max-width: 480px;
+            font-size: 0.98rem;
+        }
+
+        .btn-light {
+            background-color: #faf9f6;
+            color: var(--text-main);
+            padding: 0.85rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn-light:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* =========================================
+           7. FULLSCREEN IMAGE LIGHTBOX MODAL
+           ========================================= */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background-color: rgba(20, 20, 19, 0.92);
+            backdrop-filter: blur(6px);
+            padding: 2rem;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 92%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.4rem 0.85rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 680px) {
+            .artifact-body { padding: 1.5rem; }
+            .media-frame { padding: 0.75rem 0.75rem 0; }
+            .contact-banner { padding: 2.25rem 1.75rem; }
+            .zoom-hint { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= NAVIGATION ================= -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <span class="brand-dot"></span>
+                Your Name
+            </a>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#work">Selected Work</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================= EDITORIAL HERO ================= -->
+        <section id="about" class="hero">
+            <div class="status-badge">
+                <span class="pulse-dot"></span>
+                Open to New Opportunities
+            </div>
+            <h1>
+                Crafting thoughtful solutions in <em>Your Specialty or Industry</em>.
+            </h1>
+            <p>
+                Hi, I'm <strong>Your Name</strong>—a [Your Job Title] focused on turning complex challenges into clear, measurable results. Explore a curated collection of my work artifacts below, complete with context on my process and outcomes.
+            </p>
+            <div class="hero-actions">
+                <a href="#work" class="btn">Explore Artifacts ↓</a>
+                <a href="https://linkedin.com" target="_blank" class="btn btn-outline">LinkedIn Profile ↗</a>
+                <a href="mailto:youremail@example.com" class="btn btn-outline">Email Me</a>
+            </div>
+        </section>
+
+        <!-- ================= PORTFOLIO SECTION ================= -->
+        <section id="work">
+            <div class="section-header">
+                <div>
+                    <span class="section-label">Portfolio Archive</span>
+                    <h2>Annotated Work Samples</h2>
+                </div>
+                <!-- Interactive Filter Buttons -->
+                <div class="filter-bar" role="group" aria-label="Filter work samples">
+                    <button class="filter-btn active" data-filter="all">All Work</button>
+                    <button class="filter-btn" data-filter="image">Visuals & Docs</button>
+                    <button class="filter-btn" data-filter="video">Video Demos</button>
+                </div>
+            </div>
+
+            <!-- ARTIFACT 1: IMAGE (data-category="image" links it to the filter tabs) -->
+            <article class="artifact-card" data-category="image">
+                <div class="media-frame">
+                    <!-- Replace src="" with your file path, e.g., src="media/project1.png" -->
+                    <img src="https://placehold.co/1000x500/e8f1ee/164e3f?text=Click+Image+to+Inspect+Full-Screen+Artifact" alt="Detailed view of Project One deliverable">
+                    <span class="zoom-hint">Click to enlarge ⤢</span>
+                </div>
+                <div class="artifact-body">
+                    <div class="artifact-meta">
+                        <span class="tag">Visual Artifact</span>
+                        <span class="tag tag-neutral">2026</span>
+                        <span class="tag tag-neutral">Tool / Method Used</span>
+                    </div>
+                    <h3>Project Title One</h3>
+                    <p class="artifact-summary">
+                        Provide a concise 1–2 sentence overview explaining what the viewer is looking at and why this piece of work matters.
+                    </p>
+                    <div class="annotation-grid">
+                        <div class="annotation-box">
+                            <span class="annotation-step">01 / The Challenge</span>
+                            <p>Describe the initial problem, stakeholder request, or bottleneck you were tasked with solving.</p>
+                        </div>
+                        <div class="annotation-box">
+                            <span class="annotation-step">02 / My Approach</span>
+                            <p>Highlight the decisions you made, tools you used, and how you structured the final deliverable.</p>
+                        </div>
+                        <div class="annotation-box">
+                            <span class="annotation-step">03 / Key Outcome</span>
+                            <p>Share concrete results—such as time saved, accuracy improved, or positive team adoption.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ARTIFACT 2: VIDEO (data-category="video" links it to the filter tabs) -->
+            <article class="artifact-card" data-category="video">
+                <div class="media-frame">
+                    <!-- OPTION A: Local MP4 file in your media folder -->
+                    <video controls poster="https://placehold.co/1000x500/141413/faf9f6?text=Video+Walkthrough+Preview">
+                        <source src="media/demo-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <!-- OPTION B: Unlisted YouTube/Vimeo Embed (Delete Option A above and remove comment tags below to use) -->
+                    <!--
+                    <div class="video-embed">
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Project Video Walkthrough" allowfullscreen></iframe>
+                    </div>
+                    -->
+                </div>
+                <div class="artifact-body">
+                    <div class="artifact-meta">
+                        <span class="tag">Video Walkthrough</span>
+                        <span class="tag tag-neutral">2026</span>
+                        <span class="tag tag-neutral">Presentation / Demo</span>
+                    </div>
+                    <h3>Project Title Two</h3>
+                    <p class="artifact-summary">
+                        Summarize what happens in this recording—such as a live system walkthrough, training module, or prototype presentation.
+                    </p>
+                    <div class="annotation-grid">
+                        <div class="annotation-box">
+                            <span class="annotation-step">01 / Context & Audience</span>
+                            <p>Explain who this video or prototype was designed for and the goal of the walkthrough.</p>
+                        </div>
+                        <div class="annotation-box">
+                            <span class="annotation-step">02 / What to Notice</span>
+                            <p>Call out specific timestamps or design details employers should pay attention to while watching.</p>
+                        </div>
+                        <div class="annotation-box">
+                            <span class="annotation-step">03 / Impact</span>
+                            <p>Note the feedback from stakeholders, learners, or users after rollout.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- ================= CONTACT CTA BANNER ================= -->
+        <section id="contact" class="contact-banner">
+            <div>
+                <h2>Let’s discuss how I can contribute to your team.</h2>
+                <p>Available for interviews, portfolio walkthroughs, and full-time or contract opportunities.</p>
+            </div>
+            <a href="mailto:youremail@example.com" class="btn-light">Get in Touch →</a>
+        </section>
+    </main>
+
+    <footer>
+        <span>&copy; 2026 Your Name</span>
+        <span>Built with clean HTML & CSS</span>
+    </footer>
+
+    <!-- Fullscreen Lightbox Overlay (Opens automatically when any artifact image is clicked) -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">ESC or Click to Close ✕</span>
+        <img id="lightbox-img" src="" alt="Expanded artifact preview">
+    </div>
+
+    <!-- ================= INTERACTIVE FILTER & LIGHTBOX SCRIPT ================= -->
+    <script>
+        // 1. Category Filter Tabs
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const artifactCards = document.querySelectorAll('.artifact-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const selected = button.getAttribute('data-filter');
+                artifactCards.forEach(card => {
+                    if (selected === 'all' || card.getAttribute('data-category') === selected) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // 2. Click-to-Zoom Lightbox for Images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.querySelectorAll('.media-frame img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('open');
+            });
+        });
+
+        lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') lightbox.classList.remove('open');
+        });
+    </script>
+
+</body>
+</html>
