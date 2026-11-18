@@ -425,6 +425,71 @@
             line-height: 1.55;
         }
 
+    /* New formatting 11_18 */
+         .media-frame.media-middle {
+            border-top: 1px solid var(--border);
+            padding: 1.25rem;
+        }
+
+        .media-frame.media-middle video {
+            border-radius: 10px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .photo-card {
+            background-color: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--border);
+            cursor: zoom-in;
+            transition: opacity 0.2s ease;
+        }
+
+        .photo-card video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--border);
+            background-color: #141413;
+        }
+
+        .photo-card img:hover {
+            opacity: 0.92;
+        }
+
+        .photo-caption {
+            padding: 1.15rem 1.25rem;
+        }
+
+        .photo-caption p {
+            font-size: 0.92rem;
+            color: var(--text-main);
+            line-height: 1.55;
+        }
+
+        @media (max-width: 768px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    /* End New formatting 11_18 */
+
         /* =========================================
            6. HIGH-CONTRAST CLOSING CONTACT CARD
            ========================================= */
@@ -586,9 +651,12 @@
             </div>
 
             <!-- ARTIFACT 1: IMAGE (data-category="image" links it to the filter tabs) -->
+
+             <!-- Remove 1st Artifact
+
             <article class="artifact-card" data-category="image">
                 <div class="media-frame">
-                    <!-- Replace src="" with your file path, e.g., src="media/project1.png" -->
+                  
                     <img src="assets/images/Utensils.JPG" alt="Detailed view of Project One deliverable">
                     <span class="zoom-hint">Click to enlarge ⤢</span>
                 </div>
@@ -619,10 +687,12 @@
                 </div>
             </article>
 
+            End removal of 1st Artifact -->
+
             <!-- ARTIFACT 2: VIDEO (data-category="video" links it to the filter tabs) -->
             <article class="artifact-card" data-category="video">
-                
-               <!-- Start change -->
+
+               <!-- Start change to move annotation above video-->
                 <div class="artifact-body">
                     <div class="artifact-meta">
                         <span class="tag">Video Presentation</span>
@@ -636,7 +706,7 @@
                 </div>
                 <!-- Finish change -->
 
-                <div class="media-frame">
+                <div class="media-frame media-middle">
                     <!-- OPTION A: Local MP4 file in your media folder -->
                     <video controls poster="assets/images/Snapshot_H_Arm_Video.png">
                         <source src="assets/videos/Hydraulic_Arm.MP4" type="video/mp4">
@@ -650,6 +720,45 @@
                     </div>
                     -->
                 </div>
+             <!-- New 3 photobox grid -->
+                <div class="artifact-body">
+                    <div class="photo-grid">
+                        
+                        <!-- Photo 1 -->
+                        <div class="photo-card">
+                            <img src="assets/images/Utensils.JPG" alt="Utensils">
+                            <div class="photo-caption">
+                                <span class="annotation-step">01 / Base &amp; Pivot Structure</span>
+                                <p>Student use Design-Based Thinking and Empathetic Design to make a new utensil for a family member</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 2 -->
+                        <div class="photo-card">
+                            <img src="assets/images/photo2.jpg" alt="Syringe hydraulic actuator system">
+                            <div class="photo-caption">
+                                <span class="annotation-step">02 / Hydraulic Actuators</span>
+                                <p>Describe what is shown in the second photo—such as syringe placement, tubing layout, or pivot leverage.</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 3 -->
+                       <div class="photo-card">
+                            <video controls poster="assets/images/Snapshot_Treb.png">
+                                <source src="assets/videos/Trebuchet.MP4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="photo-caption">
+                                <span class="annotation-step">03 / Scoop &amp; Payload Test</span>
+                                <p>Students build projectile launches to hit targets and hurl golf balls as far as possible.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+ <!-- End New 3 photobox grid -->
+
+                <!-- Remove Annotation Below
                 <div class="artifact-body">
                     <div class="artifact-meta">
                         <span class="tag">Video Presentation</span>
@@ -675,6 +784,7 @@
                         </div>
                     </div>
                 </div>
+                end removal-->
             </article>
         </section>
 
@@ -725,7 +835,7 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
 
-        document.querySelectorAll('.media-frame img').forEach(img => {
+        document.querySelectorAll('.media-frame img, .photo-card img').forEach(img => {
             img.addEventListener('click', () => {
                 lightboxImg.src = img.src;
                 lightboxImg.alt = img.alt;
